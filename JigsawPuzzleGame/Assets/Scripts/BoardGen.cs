@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class BoardGen : MonoBehaviour
@@ -9,6 +9,7 @@ public class BoardGen : MonoBehaviour
   private string imageFilename;
   public string pathimageBG;
   public List<GameObject> ImagePuzzle;
+  public GameObject ImageBg;
   Sprite mBaseSpriteOpaque;
   Sprite mBaseSpriteTransparent;
 
@@ -146,26 +147,24 @@ public class BoardGen : MonoBehaviour
     // mGameObjectOpaque.AddComponent<SpriteRenderer>().sprite = mBaseSpriteOpaque;
     // mGameObjectOpaque.GetComponent<SpriteRenderer>().sortingLayerName = "Opaque";
 
-    mGameObjectOpaque = new GameObject();
-    mGameObjectOpaque.name = imageFilename + "_Opaque";
-    mGameObjectOpaque.AddComponent<SpriteRenderer>().sprite = ImagePuzzle[0].GetComponent<Sprite>();
-    mGameObjectOpaque.GetComponent<SpriteRenderer>().sortingLayerName = "Opaque";
-
     //mBaseSpriteTransparent = CreateTransparentView(mBaseSpriteOpaque.texture);
-    mBaseSpriteTransparent = LoadBGTexture();
-    mGameObjectTransparent = new GameObject();
-    mGameObjectTransparent.name = imageFilename + "_Transparent";
-    mGameObjectTransparent.AddComponent<SpriteRenderer>().sprite = mBaseSpriteTransparent;
-    mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingLayerName = "Transparent";
+    //mGameObjectTransparent = new GameObject();
+    //mGameObjectTransparent.name = imageFilename + "_Transparent";
+    // mGameObjectTransparent.AddComponent<SpriteRenderer>().sprite = mBaseSpriteTransparent;
+    // mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingLayerName = "Transparent";
 
-    mGameObjectOpaque.gameObject.SetActive(false);
-    mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingOrder = -1;
+    //mGameObjectOpaque.gameObject.SetActive(false);
+    //mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingOrder = -1;
 
     //SetCameraPosition();
 
     // Create the Jigsaw tiles.
-    CreateJigsawTiles(mGameObjectOpaque.GetComponent<Sprite>());
+    //CreateJigsawTiles(mGameObjectOpaque);
+    CreateJigsawTiles(ImagePuzzle[0]);
     //StartCoroutine(Coroutine_CreateJigsawTiles());
+
+    ImagePuzzle[0].SetActive(false);
+    ImageBg.SetActive(true);
   }
 
   Sprite CreateTransparentView(Texture2D tex)
@@ -235,9 +234,9 @@ public class BoardGen : MonoBehaviour
     return obj;
   }
 
-  void CreateJigsawTiles(Sprite Sp)
+  void CreateJigsawTiles(GameObject go)
   {
-    Texture2D baseTexture = Sp.texture;
+    Texture2D baseTexture = go.GetComponent<Image>().sprite.texture;
     numTileX = baseTexture.width / Tile.tileSize;
     numTileY = baseTexture.height / Tile.tileSize;
 
