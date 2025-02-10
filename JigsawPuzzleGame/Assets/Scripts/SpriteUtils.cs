@@ -12,7 +12,7 @@ public class SpriteUtils
     int w,
     int h,
     float pixelsPerUnit = 1.0f,
-    SpriteMeshType spriteType = SpriteMeshType.Tight)
+    SpriteMeshType spriteType = SpriteMeshType.FullRect)
   {
     Sprite newSprite = Sprite.Create(
       spriteTexture,
