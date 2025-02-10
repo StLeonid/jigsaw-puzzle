@@ -6,6 +6,7 @@ using UnityEngine;
 public class BoardGen : MonoBehaviour
 {
   private string imageFilename;
+ public string pathimageBG;
   Sprite mBaseSpriteOpaque;
   Sprite mBaseSpriteTransparent;
 
@@ -27,6 +28,58 @@ public class BoardGen : MonoBehaviour
   public Menu menu = null;
   private List<Rect> regions = new List<Rect>();
   private List<Coroutine> activeCoroutines = new List<Coroutine>();
+
+  Sprite LoadBGTexture()
+  {
+    Texture2D tex = SpriteUtils.LoadTexture(pathimageBG);
+    if (!tex.isReadable)
+    {
+      Debug.Log("Error: Texture is not readable");
+      return null;
+    }
+
+    if (tex.width % Tile.tileSize != 0 || tex.height % Tile.tileSize != 0)
+    {
+      Debug.Log("Error: Image must be of size that is multiple of <" + Tile.tileSize + ">");
+      return null;
+    }
+
+    // Add padding to the image.
+    Texture2D newTex = new Texture2D(
+        tex.width + Tile.padding * 2,
+        tex.height + Tile.padding * 2,
+        TextureFormat.ARGB32,
+        false);
+
+    // Set the default colour as white
+    for (int x = 0; x < newTex.width; ++x)
+    {
+      for (int y = 0; y < newTex.height; ++y)
+      {
+        newTex.SetPixel(x, y, Color.white);
+      }
+    }
+
+    // Copy the colours.
+    for (int x = 0; x < tex.width; ++x)
+    {
+      for (int y = 0; y < tex.height; ++y)
+      {
+        Color color = tex.GetPixel(x, y);
+        color.a = 1.0f;
+        newTex.SetPixel(x + Tile.padding, y + Tile.padding, color);
+      }
+    }
+    newTex.Apply();
+
+    Sprite sprite = SpriteUtils.CreateSpriteFromTexture2D(
+        newTex,
+        0,
+        0,
+        newTex.width,
+        newTex.height);
+    return sprite;
+  }
 
   Sprite LoadBaseTexture()
   {
@@ -91,7 +144,8 @@ public class BoardGen : MonoBehaviour
     mGameObjectOpaque.AddComponent<SpriteRenderer>().sprite = mBaseSpriteOpaque;
     mGameObjectOpaque.GetComponent<SpriteRenderer>().sortingLayerName = "Opaque";
 
-    mBaseSpriteTransparent = CreateTransparentView(mBaseSpriteOpaque.texture);
+    //mBaseSpriteTransparent = CreateTransparentView(mBaseSpriteOpaque.texture);
+    mBaseSpriteTransparent = LoadBGTexture();
     mGameObjectTransparent = new GameObject();
     mGameObjectTransparent.name = imageFilename + "_Transparent";
     mGameObjectTransparent.AddComponent<SpriteRenderer>().sprite = mBaseSpriteTransparent;
@@ -102,8 +156,8 @@ public class BoardGen : MonoBehaviour
     SetCameraPosition();
 
     // Create the Jigsaw tiles.
-    //CreateJigsawTiles();
-    StartCoroutine(Coroutine_CreateJigsawTiles());
+    CreateJigsawTiles();
+    //StartCoroutine(Coroutine_CreateJigsawTiles());
   }
 
   Sprite CreateTransparentView(Texture2D tex)
