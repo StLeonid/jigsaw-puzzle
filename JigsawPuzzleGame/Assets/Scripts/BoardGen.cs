@@ -258,8 +258,10 @@ public class BoardGen : MonoBehaviour
                 mTileGameObjects[i, j] = CreateGameObjectFromTile(mTiles[i, j]);
                 if (parentForTiles != null)
                 {
-                    //mTileGameObjects[i, j].GetComponent<RectTransform>().SetParent(parentForTiles.GetComponent<RectTransform>());
-                    mTileGameObjects[i, j].transform.SetParent(parentForTiles);
+                    var originalScale = mTileGameObjects[i, j].transform.localScale;
+                    //var originalPosition = mTileGameObjects[i, j].transform.position;
+                    //mTileGameObjects[i, j].GetComponent<RectTransform>().SetParent(parentForTiles.GetComponent<RectTransform>(), false);
+                    mTileGameObjects[i, j].transform.SetParent(parentForTiles, false);
                 }
             }
         }

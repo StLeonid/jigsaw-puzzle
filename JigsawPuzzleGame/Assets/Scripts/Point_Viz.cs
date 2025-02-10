@@ -8,18 +8,6 @@ public class Point_Viz : MonoBehaviour
   // The offset when we want to click and drag a point.
   private Vector3 mOffset = Vector3.zero;
 
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   private void OnMouseDown()
   {
     if(EventSystem.current.IsPointerOverGameObject())

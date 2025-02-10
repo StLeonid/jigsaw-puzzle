@@ -196,7 +196,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -980,8 +980,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1126957626}
-  - component: {fileID: 1126957625}
   - component: {fileID: 1126957627}
+  - component: {fileID: 1126957625}
   m_Layer: 0
   m_Name: JigsawBoard
   m_TagString: Untagged
@@ -1987,6 +1987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823169873}
   - component: {fileID: 1823169872}
+  - component: {fileID: 1823169874}
   - component: {fileID: 1823169871}
   m_Layer: 0
   m_Name: Main Camera
@@ -2069,6 +2070,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!124 &1823169874
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823169870}
+  m_Enabled: 1
 --- !u!1 &1863740948
 GameObject:
   m_ObjectHideFlags: 0

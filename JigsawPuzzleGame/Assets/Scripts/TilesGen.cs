@@ -89,7 +89,6 @@ public class TilesGen : MonoBehaviour
 
     SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
     spriteRenderer.sprite = mSprite;
-
   }
 
   void TestTileFloodFill()
@@ -101,7 +100,6 @@ public class TilesGen : MonoBehaviour
     }
 
     mTile = new Tile(mTextureOriginal);
-
 
     var type_color = GetRendomType();
     mTile.DrawCurve(Tile.Direction.UP, type_color.Item1, type_color.Item2);
