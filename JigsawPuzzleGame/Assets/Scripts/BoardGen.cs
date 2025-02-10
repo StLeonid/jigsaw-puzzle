@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoardGen : MonoBehaviour
@@ -152,6 +153,7 @@ public class BoardGen : MonoBehaviour
     mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingLayerName = "Transparent";
 
     mGameObjectOpaque.gameObject.SetActive(false);
+    mGameObjectTransparent.GetComponent<SpriteRenderer>().sortingOrder = -1;
 
     SetCameraPosition();
 
