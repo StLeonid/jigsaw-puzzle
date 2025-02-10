@@ -710,6 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767284541}
+  - component: {fileID: 767284542}
   m_Layer: 0
   m_Name: Tiles
   m_TagString: Untagged
@@ -736,6 +737,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &767284542
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767284540}
+  m_CullTransparentMesh: 1
 --- !u!1 &773713490
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126957626}
   - component: {fileID: 1126957625}
+  - component: {fileID: 1126957627}
   m_Layer: 0
   m_Name: JigsawBoard
   m_TagString: Untagged
@@ -1020,6 +1030,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1126957627
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126957624}
+  m_CullTransparentMesh: 1
 --- !u!1 &1278459639
 GameObject:
   m_ObjectHideFlags: 0

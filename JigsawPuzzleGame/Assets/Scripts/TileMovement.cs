@@ -20,7 +20,8 @@ public class TileMovement : MonoBehaviour
 
   private Vector3 GetCorrectPosition()
   {
-    return new Vector3(tile.xIndex * 100f, tile.yIndex * 100f, 0f);
+    //return new Vector3(tile.xIndex * 100f, tile.yIndex * 100f, 0f);
+    return new Vector3(tile.xIndex * Tile.tileSize, tile.yIndex * Tile.tileSize, 0f);
   }
 
   private void OnMouseDown()
@@ -64,11 +65,5 @@ public class TileMovement : MonoBehaviour
       transform.position = GetCorrectPosition();
       onTileInPlace?.Invoke(this);
     }
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
   }
 }
